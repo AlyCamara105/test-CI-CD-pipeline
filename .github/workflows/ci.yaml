@@ -3,35 +3,34 @@ name: CI
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     - main
 
 jobs:
-
   lint:
     name: Lint
     runs-on: windows-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - uses: Roblox/setup-foreman@v1
-      name: Install Foreman
-      with:
-        version: "^1.0.0"
-        token: ${{ SECRETS.GITHUB_TOKEN }}
+      - name: Install Foreman
+        uses: Roblox/setup-foreman@v1
+        with:
+          version: "^1.0.0"
+          token: ${{ SECRETS.GITHUB_TOKEN }}
 
-    - name: Lint
-      run: |
-       selene ./src
+      - name: Lint
+        run: |
+          selene ./src
   
   style:
     name: Styling
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: JohnnyMorganz/stylua-action@1.0.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        args: --check .
+      - uses: actions/checkout@v3
+      - uses: JohnnyMorganz/stylua-action@1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --check .
