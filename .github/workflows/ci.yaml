@@ -9,6 +9,7 @@ on:
     - master
 
 jobs:
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -19,8 +20,8 @@ jobs:
     - uses: Roblox/setup-foreman@v1
       name: Install Foreman
       with:
-        version: "^1.0.0"
-        token: ${{ SECRETS.GITHUB_TOKEN }}
+          version: "^1.0.0"
+          token: ${{ SECRETS.GITHUB_TOKEN }}
 
     - name: Lint
       run: |
